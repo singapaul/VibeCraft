@@ -7,7 +7,7 @@ import { getAnalytics } from 'firebase/analytics';
 // Your web app's Firebase configuration
 const firebaseConfig = {
 	apiKey: process.env.FIREBASEAPIKEY,
-	projectId: process.env.FIREBASEPROJECTID,
+	projectId: "moody-13597",
 	authDomain: 'moody-13597.firebaseapp.com',
 	storageBucket: 'moody-13597.appspot.com',
 	messagingSenderId: '969808116822',
