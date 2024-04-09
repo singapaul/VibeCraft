@@ -1,5 +1,5 @@
 - todo typewriter text with example prompts
-- make a tik tok 
+- make a tik tok
 - vercel analytics
 - completion modal
 - overlay with a fact

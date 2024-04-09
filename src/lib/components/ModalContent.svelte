@@ -1,24 +1,21 @@
 <script lang="ts">
-  import { getContext, SvelteComponent } from 'svelte';
+	import { getContext, SvelteComponent } from 'svelte';
 
-  import PlaylistCreationSuccess from './PlaylistCreationSuccess.svelte';
+	import PlaylistCreationSuccess from './PlaylistCreationSuccess.svelte';
 
-  type ContextProps = {
-    open: (
-      Component: typeof SvelteComponent<any>,
-      props: Record<string, string>,
-    ) => void;
-    close: (callbacks?: Record<string, string>) => void;
-  };
+	type ContextProps = {
+		open: (Component: typeof SvelteComponent<any>, props: Record<string, string>) => void;
+		close: (callbacks?: Record<string, string>) => void;
+	};
 
-  const { open, close } = getContext<ContextProps>('simple-modal');
+	const { open, close } = getContext<ContextProps>('simple-modal');
 
-  export let playlistId: string;
-  export let isGenerationDone: boolean;
+	export let playlistId: string;
+	export let isGenerationDone: boolean;
 
-  $: if (isGenerationDone) {
-    open(PlaylistCreationSuccess, { playlistId: playlistId });
-  } else {
-    close();
-  }
+	$: if (isGenerationDone) {
+		open(PlaylistCreationSuccess, { playlistId: playlistId });
+	} else {
+		close();
+	}
 </script>

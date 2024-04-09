@@ -1,10 +1,9 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { storedToken, storedUser } from '../stores';
-	import {  faSpotify } from '@fortawesome/free-brands-svg-icons';
-  	import Icon from 'svelte-awesome';
-	  import {   faBrain } from '@fortawesome/free-solid-svg-icons';
- 
+	import { faSpotify } from '@fortawesome/free-brands-svg-icons';
+	import Icon from 'svelte-awesome';
+	import { faBrain } from '@fortawesome/free-solid-svg-icons';
 
 	import SpotifyApi from 'spotify-web-api-js';
 	import { goto } from '$app/navigation';
@@ -17,7 +16,7 @@
 
 	const handleInspiration = () => {
 		window.location.href = '/getInspired';
-	}
+	};
 
 	const handleSpotifyLogin = () => {
 		const spotifyAuthURL = `${authEndpoint}?client_id=${clientId}&redirect_uri=${redirectUri}&scope=${scopes.join(
@@ -56,43 +55,46 @@
 
 		storedToken.set(hashFromURL.access_token);
 		spotifyApi.setAccessToken($storedToken);
-
-	
 	};
 
-    onMount(() => {
-			setAccessToken();
+	onMount(() => {
+		setAccessToken();
 
-			if ($storedToken) {
-				void getUserInformation();
-			}
-		});
+		if ($storedToken) {
+			void getUserInformation();
+		}
+	});
 
-    const getUserInformation = async () => {
-    try {
-      const response = await getMe();
-      storedUser.set(response);
-    } catch {
-      storedToken.set(null);
-      storedUser.set(undefined);
-      await goto('/');
-    }
-  };
+	const getUserInformation = async () => {
+		try {
+			const response = await getMe();
+			storedUser.set(response);
+		} catch {
+			storedToken.set(null);
+			storedUser.set(undefined);
+			await goto('/');
+		}
+	};
 
+	const getMe = async () => {
+		const response = await spotifyApi.getMe();
 
-  const getMe = async () => {
-  const response = await spotifyApi.getMe();
- 
-  return response;
-};
+		return response;
+	};
 </script>
 
-
-<section class="flex flex-col gap-8 items-center">
-<h1 class="text-4xl font-bold text-center text-gray-800 mt-10">Welcome to VibeCraft!</h1>
-<p class="text-xl text-center text-gray-600 max-w-80">Craft your perfect Spotify playlist with just a prompt. Enter your musical mood or the silliest of random prompts, and let us do the magic in your Spotify account.</p>
-<div class="flex flex-col gap-4">
-<Button on:click={handleSpotifyLogin} class="p-8 flex justify-between">Login with spotify<Icon data={faSpotify} class="m-3  p" scale={2} /></Button>
-<Button on:click={handleInspiration} class="p-8 flex justify-between" variant='secondary'>Looking for inspiration?<Icon data={faBrain} class="m-3  p" scale={2} /></Button>
-</div>
+<section class="flex flex-col items-center gap-8">
+	<h1 class="mt-10 text-center text-4xl font-bold text-gray-800">Welcome to VibeCraft!</h1>
+	<p class="max-w-80 text-center text-xl text-gray-600">
+		Craft your perfect Spotify playlist with just a prompt. Enter your musical mood or the silliest
+		of random prompts, and let us do the magic in your Spotify account.
+	</p>
+	<div class="flex flex-col gap-4">
+		<Button on:click={handleSpotifyLogin} class="flex justify-between p-8"
+			>Login with spotify<Icon data={faSpotify} class="p  m-3" scale={2} /></Button
+		>
+		<Button on:click={handleInspiration} class="flex justify-between p-8" variant="secondary"
+			>Looking for inspiration?<Icon data={faBrain} class="p  m-3" scale={2} /></Button
+		>
+	</div>
 </section>

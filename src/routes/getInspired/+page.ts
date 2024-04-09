@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import type { PageLoad } from './$types';
 import { db } from '$lib/firebase';
 import { collection, query, getDocs, Timestamp } from 'firebase/firestore';
@@ -18,6 +19,7 @@ export const load = (async () => {
 		};
 	});
 
+	// @ts-expect-error
 	const typed: FireBaseResponse[] = data;
 
 	return {
