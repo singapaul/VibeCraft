@@ -6,7 +6,7 @@ import { getFirestore } from 'firebase/firestore';
 import { getAnalytics } from 'firebase/analytics';
 // Your web app's Firebase configuration
 const firebaseConfig = {
-	apiKey: process.env.FIREBASEAPIKEY,
+	apiKey: "AIzaSyAqlzoKl0ayhDeBAF6T9upujjyp2d09PlM",
 	projectId: "moody-13597",
 	authDomain: 'moody-13597.firebaseapp.com',
 	storageBucket: 'moody-13597.appspot.com',
