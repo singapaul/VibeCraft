@@ -11,7 +11,7 @@
 	const spotifyApi = new SpotifyApi();
 	const authEndpoint = 'https://accounts.spotify.com/authorize';
 	const clientId = 'db85402fb68a4860a34d7106b6a72330';
-	const redirectUri = 'https://moody-13597.web.app/';
+	const redirectUri = 'https://vibe-craft-blue.vercel.app/';
 	const scopes = ['playlist-modify-public', 'playlist-modify-private', 'ugc-image-upload'];
 
 	const handleInspiration = () => {
